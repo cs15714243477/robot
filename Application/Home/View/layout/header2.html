@@ -1,0 +1,37 @@
+<div class="mobile-nav" id="mobile-nav">
+    <div><a href="__ROOT__/index.php/home/index">{$lang['home']}</a></div>
+    <div class="mobile-level1">
+        <a href="javascript:;" class="mobile-level1a">{$lang['product']}</a>
+        <ul>
+            <volist name="menu" id="v">
+                <li><a href="__ROOT__/index.php/home/index/product?gid={$v.id}">{$v.name}</a></li>
+            </volist>
+        </ul>
+    </div>
+    <div class="mobile-level1">
+        <a href="javascript:;" class="mobile-level1a"> {$lang['franka']}</a>
+        <ul>
+            <volist name="menus" id="v">
+                <li><a href="__ROOT__/index.php/home/index/word?sid={$v.id}">{$v.name}</a></li>
+            </volist>
+        </ul>
+    </div>
+    <div><a href="__ROOT__/index.php/home/index/about"> {$lang['partners']}</a></div>
+</div>
+
+<script>
+    function change_lang(e) {
+        if (e == 'eng') {
+            $.post('__ROOT__/index.php/home/index/change_lang', {lang: e}, function (data) {
+                window.location.reload();
+            });
+        } else {
+            $.post('__ROOT__/index.php/home/index/change_lang', {lang: e}, function (data) {
+                window.location.reload();
+            });
+        }
+        console.log(e);
+    }
+</script>
+
+

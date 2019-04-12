@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/Public/static/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/Public/static/css/public.css" media="all"/>
+</head>
+<body class="childrenBody">
+<form class="layui-form layui-form-pane" style="width:90%;padding-left: 5%;">
+    <input type="hidden" name="id" value="{$info.id}"><div class="layui-form-item">
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="title419contents">模块9标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title419contents" id="title419contents" placeholder="模块9标题" autocomplete="off"
+                   maxlength="255" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="title419contentsimage">模块9图片</label>
+        <div class="layui-input-block">
+            <input type="text" readonly style="cursor: pointer" name="title419contentsimage" id="title419contentsimage"
+                   placeholder="模块9图片" autocomplete="off" class="layui-input">
+            <img src="" id="title419contentsimage_show" alt="模块9图片"
+                 style="height: 100px;width: auto;position: absolute;z-index: 10;border: 1px dashed #d2d2d2;display: none">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" for="title419contentssfile">模块9视频</label>
+        <div class="layui-input-block">
+            <input type="text" readonly style="cursor: pointer" name="title419contentssfile" id="title419contentssfile"
+                   placeholder="模块9视频" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="addData">提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="/Public/static/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="/Public/static/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['form', 'layer', 'laydate', 'upload', 'layedit'], function () {
+        let form = layui.form,
+            laydate = layui.laydate,
+            upload = layui.upload,
+            layedit = layui.layedit,
+            layer = parent.layer === undefined ? layui.layer : top.layer;
+
+
+        upload.render({
+            elem: "#image"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#image").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#image_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#image_show').slideUp();
+        });
+
+
+        let title_ones_content = layedit.build('title_ones_content', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=title_ones_content]").contents().find("body").blur(function () {
+            layedit.sync(title_ones_content);
+        });
+
+
+        let title_ones_content_description = layedit.build('title_ones_content_description', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=title_ones_content_description]").contents().find("body").blur(function () {
+            layedit.sync(title_ones_content_description);
+        });
+
+
+        let title_ones_contents_description = layedit.build('title_ones_contents_description', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=title_ones_contents_description]").contents().find("body").blur(function () {
+            layedit.sync(title_ones_contents_description);
+        });
+
+
+        upload.render({
+            elem: "#images"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#images").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#images_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#images_show').slideUp();
+        });
+
+
+        let title_two_content = layedit.build('title_two_content', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+
+
+        $("iframe[textarea=title_two_content]").contents().find("body").blur(function () {
+            layedit.sync(title_two_content);
+        });
+
+
+        let title_twos_content = layedit.build('title_twos_content', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+
+
+        $("iframe[textarea=title_twos_content]").contents().find("body").blur(function () {
+            layedit.sync(title_twos_content);
+        });
+
+
+        let title_twoss_content = layedit.build('title_twoss_content', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=title_twoss_content]").contents().find("body").blur(function () {
+            layedit.sync(title_twoss_content);
+        });
+
+
+        let titletwoscontent = layedit.build('titletwoscontent', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=titletwoscontent]").contents().find("body").blur(function () {
+            layedit.sync(titletwoscontent);
+        });
+
+
+        let titlecontent = layedit.build('titlecontent', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=titlecontent]").contents().find("body").blur(function () {
+            layedit.sync(titlecontent);
+        });
+
+
+        upload.render({
+            elem: "#title3image"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#title3image").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title3image_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title3image_show').slideUp();
+        });
+
+
+        let title3content = layedit.build('title3content', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=title3content]").contents().find("body").blur(function () {
+            layedit.sync(title3content);
+        });
+
+
+        upload.render({
+            elem: "#title41image"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#title41image").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title41image_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title41image_show').slideUp();
+        });
+
+
+        upload.render({
+            elem: "#title414image"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+
+
+        $("#title414image").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title414image_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title414image_show').slideUp();
+        });
+
+
+        upload.render({
+            elem: "#title415image"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#title415image").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title415image_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title415image_show').slideUp();
+        });
+
+
+        upload.render({
+            elem: "#title418image"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#title418image").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title418image_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title418image_show').slideUp();
+        });
+
+
+        upload.render({
+            elem: "#title418images"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#title418images").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title418images_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title418images_show').slideUp();
+        });
+
+
+        upload.render({
+            elem: "#title419contentsimage"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#title419contentsimage").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title419contentsimage_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title419contentsimage_show').slideUp();
+        });
+
+
+        upload.render({
+            elem: "#title419contentssfile"
+            , url: "/admin/FileUpload/uploadfile"
+            , accept: "file"
+            , before: function () {
+                layer.msg("文件上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+
+        upload.render({
+            elem: "#title4110image"
+            , url: "/admin/FileUpload/upload"
+            , before: function () {
+                layer.msg("图片上传中", {icon: 16, time: false});
+            }
+            , done: function (res) {
+                let item = this.item;
+                layer.closeAll();
+                if (res.code === 0) {
+                    layer.msg("上传成功", {icon: 1});
+                    $(item).val(res.data.src);
+                } else {
+                    layer.alert(res.msg);
+                }
+            }
+        });
+        $("#title4110image").hover(function () {
+            let _this = $(this);
+            if (_this.val() !== '') {
+                $('#title4110image_show').attr("src", _this.val()).slideDown();
+            }
+        }, function () {
+            $('#title4110image_show').slideUp();
+        });
+
+
+        let title4110content = layedit.build('title4110content', {
+            uploadImage: {url: '/admin/FileUpload/upload', type: 'post'},
+            height: 200
+        });
+        $("iframe[textarea=title4110content]").contents().find("body").blur(function () {
+            layedit.sync(title4110content);
+        });
+
+
+        form.on('switch(switch)', function (data) {
+            let v = '0';
+            if (data.elem.checked) v = '1';
+            $('input[name=switch]').val(v);
+        });
+
+
+        form.on("submit(addData)", function () {
+            let index = layer.msg('数据提交中，请稍候', {icon: 16, time: false});
+            $.post("/admin/Product/adds", {para: $('form').serialize()}, function (res) {
+                window.parent.window.parent.toast(res.info, res.code);
+                layer.close(index);
+                if (0 === res.code) {
+                    parent.layer.closeAll();
+                    window.parent.tablist.reload();
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

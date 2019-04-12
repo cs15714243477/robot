@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+
+    <title>{$con.sq_seo}</title>
+    <meta name="description" content="{$con.sq_description}"/>
+    <meta name="keywords" content="{$con.sq_keywords}"/>
+
+
+    <link rel="shortcut icon" href="__PUBLIC__/robot/img/ico.ico">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/reset.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/mobile.css">
+    <!--[if IE]-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>-->
+    <!--[endif]-->
+    <script src="__PUBLIC__/robot/js/jquery-1.9.1.js"></script>
+    <script src="__PUBLIC__/robot/js/common.js"></script>
+
+</head>
+<body>
+
+<include file="layout/header1"/>
+
+<!---->
+<div class="page-banner page-banners" id="page-banner"
+     style="background-image: url(/public/robot/img/banner2.jpg);"></div>
+<div class="box" id="boxs">
+    <ul class="index-list">
+        <li class=" wow fadeInRight">
+            <volist name="s" id="v">
+                <div class="navs">
+                    <a href="__ROOT__/index.php/home/index/words?sid={$v.id}" class="nav-level1">{$v.name}</a>
+                </div>
+            </volist>
+        </li>
+    </ul>
+</div>
+
+
+<!--返回-->
+<div id="click-top">
+    <i class="iconfont icon-jiantou"></i>
+    <p>
+        <php>
+            if (session('lang')) {
+            if (session('lang') == 'chinese') {
+        </php>
+
+        顶部
+        <php>
+            } else {
+        </php>
+        top
+
+        <php>
+            }
+            }
+        </php>
+
+
+    </p>
+</div>
+
+<!--手机底部导航-->
+<div class="clear"></div>
+
+<include file="layout/header2"/>
+
+
+</body>
+</html>

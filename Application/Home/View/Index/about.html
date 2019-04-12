@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+    <title>{$a.seo_title}</title>
+    <meta name="description" content="{$a.seo_description}"/>
+    <meta name="keywords" content="{$a.seo_keywords}"/>
+
+    <link rel="shortcut icon" href="__PUBLIC__/robot/img/ico.ico">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/reset.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/mobile.css">
+    <!--[if IE]-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>-->
+    <!--[endif]-->
+    <script src="__PUBLIC__/robot/js/jquery-1.9.1.js"></script>
+    <script src="__PUBLIC__/robot/js/common.js"></script>
+
+</head>
+<body>
+
+
+<include file="layout/header1"/>
+
+<!---->
+<div class="empty-banner"></div>
+<div class="pages-banner">
+    <img src="{$a.image}" alt=""/>
+</div>
+
+<div class="robot8 box">
+    <div class="title">
+        <h1>{$a.title}</h1>
+        <p>{$a.titleone}</p>
+    </div>
+</div>
+
+<div class="robot9">
+    <ul class="service-list box">
+        <li>
+            <div class="service-item">
+                <div class="title">
+                    <h1>{$a.name}</h1>
+                    <h3>{$a.names}</h3>
+                </div>
+                <div class="item-logo">
+                    <img src="{$a.images}" alt=""/>
+                </div>
+            </div>
+            <div class="service-box">
+                <div class="service1">
+                    {$a.titlecontent|htmlspecialchars_decode}
+                </div>
+                <div class="service2">
+                    <div class="service-card1">
+                        <div class="service-card-1">
+                            <img src="{$a.qimages}" alt=""/>
+                        </div>
+                        <div class="service-card-2">
+                            <h1>{$a.title2}</h1>
+                        </div>
+                        <p>{$a.title3}</p>
+                    </div>
+                    <div class="service-card2">
+                        <div class="service-card-3">
+                            <h1>{$a.title4}</h1>
+                            {$a.content4|htmlspecialchars_decode}
+                        </div>
+                        <div class="service-card-4">
+                            <img src="{$a.simage}" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+
+</div>
+
+
+<div class="foot">
+    <div class="box">
+        <img src="{$con.image}" alt=""/>
+        <p>{$con.address}</p>
+    </div>
+</div>
+
+
+<!--返回-->
+<div id="click-top">
+    <i class="iconfont icon-jiantou"></i>
+    <p>top</p>
+</div>
+
+
+<!--手机底部导航-->
+<div class="clear"></div>
+<div class="empty"></div>
+<include file="layout/header2"/>
+
+
+</body>
+</html>

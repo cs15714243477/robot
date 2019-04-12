@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+
+    <title>{$d.seo_title}</title>
+    <meta name="description" content="{$d.seo_description}"/>
+    <meta name="keywords" content="{$d.seo_keywords}"/>
+
+
+    <link rel="shortcut icon" href="__PUBLIC__/robot/img/ico.ico">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/reset.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/mobile.css">
+
+    <script src="__PUBLIC__/robot/js/jquery-1.9.1.js"></script>
+    <script src="__PUBLIC__/robot/js/common.js"></script>
+</head>
+<body>
+<include file="layout/header1"/>
+<div class="empty-banner"></div>
+<div class="pages-banner">
+    <img src="{$d.image}" alt=""/>
+</div>
+
+
+<div class="robot10 box" id="robot10">
+    <div class="title1 wow fadeInUp">
+        <h1>{$d.title}</h1>
+        <p>{$d.content|htmlspecialchars_decode}</p>
+    </div>
+</div>
+
+<div class="app-list" id="appList">
+    <volist name="ds" id="v">
+        <div class="add-box">
+            <div class="app-pic">
+                <img src="{$v.image}" alt="" class="img1"/>
+                <!--<img src="__PUBLIC__/robot/img/app-pic2.jpg" alt="" class="img2"/>-->
+            </div>
+            <div class="app-con slideTxtBox">
+                <div class="title2">
+                    <h1>{$v.title}</h1>
+                </div>
+
+
+                <div class="app-video">
+                    <p>OVERVIEW<i onclick="watch(this)" vi="{$v.videofile}" class="iconfont icon-bofang "></i></p>
+                </div>
+
+
+                <div class="hd">
+                    <ul class="operate-list">
+                        <php>
+
+                            if (session('lang') == 'chinese') {
+                            $e = M('wordss_cn')->where(' switch = 1 and pid='.$v['id'])->select();
+
+
+                            } else {
+                            $e = M('wordss')->where(' switch = 1 and pid='.$v['id'])->select();
+
+                            }
+
+
+                        </php>
+                        <volist name="e" id="vv">
+                            <li>
+                                <img src="{$vv.image}" alt=""/>
+                                <p>{$vv.name}</p>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                <div class="operate-box">
+                    <div class="operate-intro">
+                        {$v.content|htmlspecialchars_decode}
+                    </div>
+                    <div class="bd">
+                        <php>
+
+
+                            if (session('lang') == 'chinese') {
+                            $e = M('wordss_cn')->where(' switch = 1 and pid='.$v['id'])->select();
+
+
+                            } else {
+                            $e = M('wordss')->where(' switch = 1 and pid='.$v['id'])->select();
+
+                            }
+
+                        </php>
+                        <volist name="e" id="vv">
+                            <div class="operate-con">
+                                <div class="operate-img">
+                                    <img src="{$vv.images}" alt=""/>
+                                </div>
+                                <div class="operate-text">
+                                    <p>{$vv.content|htmlspecialchars_decode}</p>
+                                </div>
+                            </div>
+                        </volist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </volist>
+</div>
+
+
+<!--视频弹窗-->
+<div class="popup-bg "></div>
+<div class="video-box">
+    <span class="hide">×</span>
+
+    <p>
+        <php>
+            if (session('lang')) {
+            if (session('lang') == 'chinese') {
+        </php>
+        观看视频
+        <php>
+            } else {
+        </php>
+        video
+        <php>
+            }
+            }
+        </php>
+    </p>
+    <div class="videos">
+        <video poster="" src="" type="video/mp4" controls="controls"
+               width="100%" height="100%">
+        </video>
+    </div>
+</div>
+
+
+<div class="clear"></div>
+
+
+<div class="foot">
+    <div class="box">
+        <img src="{$con.image}" alt=""/>
+        <p>{$con.address}</p>
+    </div>
+</div>
+
+<!--返回-->
+<div id="click-top">
+    <i class="iconfont icon-jiantou"></i>
+    <p>
+        <php>
+            if (session('lang')) {
+            if (session('lang') == 'chinese') {
+        </php>
+
+        顶部
+        <php>
+            } else {
+        </php>
+        top
+
+        <php>
+            }
+            }
+        </php>
+
+
+    </p>
+</div>
+
+
+<!--手机底部导航-->
+<div class="clear"></div>
+<div class="empty"></div>
+<include file="layout/header2"/>
+
+
+<script type="text/javascript">
+
+    function watch(obj) {
+        var videoSrc = $(obj).attr("vi");
+        console.log(videoSrc);
+        $('.videos').html('<video src = "' + videoSrc + '" type="video/mp4"  controls="controls"   width="100%" height="100%" ></video>');
+        $(".popup-bg").show();
+        $(".video-box").show();
+
+        $("body,html").addClass("body-hide");
+    }
+
+
+</script>
+
+
+</body>
+</html>

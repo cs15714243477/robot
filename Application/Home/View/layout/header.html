@@ -1,0 +1,59 @@
+<div class="header">
+    <a href="__ROOT__/index.php/home/index" class="logo">
+        <img src="{$con.image}" alt=""/>
+    </a>
+    <div class="language-switch" id="LStab">
+
+
+        <php>
+            if (session('lang')) {
+            if (session('lang') == 'chinese') {
+        </php>
+
+        <p class="l-s-tab"><span><img onclick="change_lang('china')" src="__PUBLIC__/robot/img/cn.png"
+                                      alt=""/><em onclick="change_lang('china')">{$lang['eng']}</em> </span><i
+                class="iconfont icon-xia"></i>
+        </p>
+
+        <div class="language-switch-tab">
+            <a href="javascript:;"><img onclick="change_lang('eng')" src="__PUBLIC__/robot/img/en.png"
+                                        alt=""/><em onclick="change_lang('eng')">{$lang['engs']}</em></a>
+        </div>
+        <php>
+            } else {
+        </php>
+        <p class="l-s-tab"><span><img onclick="change_lang('eng')" src="__PUBLIC__/robot/img/en.png"
+                                      alt=""/><em onclick="change_lang('eng')">{$lang['engs']}</em> </span><i
+                class="iconfont icon-xia"></i>
+        </p>
+
+
+        <div class="language-switch-tab">
+            <a href="javascript:;"><img onclick="change_lang('china')" src="__PUBLIC__/robot/img/cn.png"
+                                        alt=""/><em onclick="change_lang('china')">{$lang['eng']}</em></a>
+        </div>
+
+        <php>
+            }
+            }
+        </php>
+
+
+
+
+    </div>
+</div>
+<script>
+    function change_lang(e) {
+        if (e == 'eng') {
+            $.post('__ROOT__/index.php/home/index/change_lang', {lang: e}, function (data) {
+                window.location.reload();
+            });
+        } else {
+            $.post('__ROOT__/index.php/home/index/change_lang', {lang: e}, function (data) {
+                window.location.reload();
+            });
+        }
+        console.log(e);
+    }
+</script>

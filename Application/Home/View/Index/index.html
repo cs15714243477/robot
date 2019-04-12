@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+
+    <title>{$con.index_seo}</title>
+    <meta name="description" content="{$con.index_description}"/>
+    <meta name="keywords" content="{$con.index_keywords}"/>
+
+
+    <link rel="shortcut icon" href="__PUBLIC__/robot/img/ico.ico">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/reset.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/robot/css/mobile.css">
+    <!--[if IE]-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>-->
+    <!--[endif]-->
+    <script src="__PUBLIC__/robot/js/jquery-1.9.1.js"></script>
+    <script src="__PUBLIC__/robot/js/common.js"></script>
+    <script>
+        var nowPic = 1;
+
+        function MouseWheel(e) {
+            var pic;
+            e = e || window.event;
+            if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
+                if (e.wheelDelta > 0) { //当滑轮向上滚动时
+                    if (nowPic <= 1) {
+                        nowPic = 6;
+                    }
+                    else {
+                        nowPic--;
+                    }
+                }
+                if (e.wheelDelta < 0) { //当滑轮向下滚动时
+                    if (nowPic >= 6) {
+                        nowPic = 1;
+                    }
+                    else {
+                        nowPic++;
+                    }
+                }
+            } else if (e.detail) {  //Firefox滑轮事件
+                if (e.detail > 0) { //当滑轮向上滚动时
+                    if (nowPic <= 1) {
+                        nowPic = 6;
+                    }
+                    else {
+                        nowPic--;
+                    }
+                }
+                if (e.detail < 0) { //当滑轮向下滚动时
+
+                    if (nowPic >= 6) {
+                        nowPic = 1;
+                    }
+                    else {
+                        nowPic++;
+                    }
+                }
+            }
+            for (i = 1; i < 7; i++) {
+                console.log(i);
+
+                if (nowPic == i) {
+                    if (e.wheelDelta) {
+                        pic = document.getElementById("pic" + i);
+                        $(pic).addClass("on");
+                    } else if (e.detail) {
+                        pic = document.getElementById("pic" + i);
+                        $(pic).addClass("on");
+
+                    }
+                } else {
+                    pic = document.getElementById("pic" + i);
+                    $(pic).removeClass("on");
+
+                }
+            }
+        }
+
+        /*Firefox注册事件*/
+        if (document.addEventListener) {
+            document.addEventListener("DOMMouseScroll", MouseWheel, false);
+        }
+        //        window.onmousewheel=document.onmousewheel=MouseWheel;//IE/Opera/Chrome
+        window.onmousewheel = MouseWheel;//IE/Opera/Chrome
+    </script>
+
+
+</head>
+<body>
+
+<include file="layout/header"/>
+<!--图片动画-->
+<div id="picBox">
+    <volist name="b" id="v" key="k">
+        <div id="pic{$k}" class="{$v.cla}" style=" background-image: url('{$v.images}')"></div>
+    </volist>
+</div>
+
+<div class="index-nav">
+    <div class="navs">
+        <a href="javascript:;" class="nav-level1">{$lang['product']}</a>
+        <ul>
+            <volist name="c" id="v">
+                <li><a href="__ROOT__/index.php/home/index/product?gid={$v.id}">{$v.name}</a></li>
+            </volist>
+        </ul>
+    </div>
+    <div class="navs">
+        <a href="javasvript:;" class="nav-level1">{$lang['franka']}</a>
+        <ul>
+
+            <volist name="menus" id="v">
+                <li><a href="__ROOT__/index.php/home/index/words?sid={$v.id}">{$v.name}</a></li>
+            </volist>
+
+        </ul>
+    </div>
+    <div class="navs">
+        <a href="__ROOT__/index.php/home/index/about" class="nav-level1">{$lang['partners']}</a>
+    </div>
+</div>
+
+
+<!--手机底部导航-->
+<div class="clear"></div>
+<div class="empty"></div>
+<include file="layout/header2"/>
+
+
+</body>
+</html>
